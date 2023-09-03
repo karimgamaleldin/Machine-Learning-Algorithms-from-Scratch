@@ -21,8 +21,8 @@ class LinearRegression:
             dw = (1 / n_samples) * np.dot(X.T, (y_pred - y))  # The derivative equation for the Mean Squared error loss
             db = (1 / n_samples) * np.sum(y_pred - y)  # The derivative equation for the Mean Squared error loss
 
-            self.weights = self.weights - self.lr * dw  # Updating our weights
-            self.bias = self.bias - self.lr * db  # Updating our bias
+            self.weights -= self.lr * dw  # Updating our weights
+            self.bias -=  self.lr * db  # Updating our bias
 
     def predict(self, X):
         return np.dot(X, self.weights) + self.bias  # predicting the y for x
