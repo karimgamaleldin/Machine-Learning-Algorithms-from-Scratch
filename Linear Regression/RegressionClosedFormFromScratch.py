@@ -7,30 +7,6 @@ import random
 
 style.use('fivethirtyeight')
 
-def create_dataset(hm, variance, step=2, correlation=False):
-    """
-    hm: how much points
-    variance: the variance of the y
-    step: the step between each point
-    correlation: +ve or -ve or no correlation
-    """
-    val = 1
-    ys = []
-    for i in range(hm):
-        y = val + random.randrange(-variance, variance)
-        ys.append(y)
-        if correlation and correlation == 'pos':
-            val += step
-        elif correlation and correlation == 'neg':
-            val -= step
-    X = [i for i in range(len(ys))]
-    return np.array(X, dtype=np.float64), np.array(ys, dtype=np.float64)
-
-
-X, y = create_dataset(40, 40, 2, correlation='pos')
-
-
-
 # the slope of the best fit line is got from (mean(x) * mean(y) - mean(x*y)) / (mean(x) ** 2 - mean(x**2))
 def best_fit_slope(X, y):
     X_bar = mean(X)
@@ -71,6 +47,27 @@ def r_squared(y, y_pred):  # coefficient of determination
     r2 = 1 - (squared_error(y, y_pred) / squared_error(y, y_mean_line))
     return r2
 
+def create_dataset(hm, variance, step=2, correlation=False):
+    """
+    hm: how much points
+    variance: the variance of the y
+    step: the step between each point
+    correlation: +ve or -ve or no correlation
+    """
+    val = 1
+    ys = []
+    for i in range(hm):
+        y = val + random.randrange(-variance, variance)
+        ys.append(y)
+        if correlation and correlation == 'pos':
+            val += step
+        elif correlation and correlation == 'neg':
+            val -= step
+    X = [i for i in range(len(ys))]
+    return np.array(X, dtype=np.float64), np.array(ys, dtype=np.float64)
+
+
+X, y = create_dataset(40, 40, 2, correlation='pos')
 
 m, b = best_fit_slope_and_intercept(X, y)
 print(m, b)
