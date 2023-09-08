@@ -36,8 +36,8 @@ class Perceptron:
                 y_pred = self.activation_func(linear_output)
 
                 # Update rule of our update rule
-                u = self.lr * (y[idx] - y_pred)
-                self.weights += u * x_i
+                u = self.lr * (y[idx] - y_pred)  # If predictions == true value this will be 0
+                self.weights += u * x_i  # We multiply by x_i to update the weights of the whole matrix W
                 self.bias += u
 
     def predict(self, X):
