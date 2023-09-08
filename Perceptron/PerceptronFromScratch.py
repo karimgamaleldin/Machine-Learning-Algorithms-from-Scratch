@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn import datasets
 
+# Perceptron is a single layer feed forward neural network.
 
 def activation_function(x):  # unit step function
     return np.where(x > 0, 1, 0)
